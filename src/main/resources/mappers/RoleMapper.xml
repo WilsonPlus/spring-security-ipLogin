@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ningdd.study.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.ningdd.study.PO.Role">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="role_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="role_desc" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, role_name, role_desc, create_time, update_time
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from t_sec_role
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        r.id,
+        r.role_name,
+        r.role_desc,
+        r.create_time,
+        r.update_time
+        FROM
+        t_sec_role AS r
+        LEFT JOIN t_sec_member AS m ON m.username = #{username,jdbcType=VARCHAR}
+        INNER JOIN `t_sec_member_role` AS mr ON m.id = mr.member_id
+        AND mr.role_id = r.id;
+    </select>
+</mapper>
