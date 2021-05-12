@@ -20,7 +20,7 @@
 		<!-- spring-mybatis版本号 -->
 		<spring-mybatis.version>1.3.0</spring-mybatis.version>
 		<!-- security版本号 -->
-		<security.version>4.2.4.RELEASE</security.version>
+		<security.version>5.2.10.RELEASE</security.version>
 		<!-- log4j日志文件管理包版本 -->
 		<slf4j.version>1.7.7</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
